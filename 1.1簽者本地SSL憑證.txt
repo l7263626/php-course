@@ -1,0 +1,53 @@
+安裝本地ssl
+
+安裝GO
+https://golang.org/dl/
+
+
+透過minica產生簽證
+https://github.com/jsha/minica
+
+Installation
+First, install the Go tools and set up your $GOPATH. Then, run:
+
+go get github.com/jsha/minica
+
+When using Go 1.11 or newer you don't need a $GOPATH and can instead do the following:
+
+cd /ANY/PATH
+git clone https://github.com/jsha/minica.git
+go build
+## or
+# go install
+Mac OS users could alternatively use Homebrew: brew install minica
+
+Example usage
+# Generate a root key and cert in minica-key.pem, and minica.pem, then
+# generate and sign an end-entity key and cert, storing them in ./foo.com/
+$ minica --domains foo.com
+
+# Wildcard
+$ minica --domains '*.foo.com'
+
+將上述產生的 minica.pem 安裝到本機的信任根憑證
+
+1.執行mmc
+2.執行主選單「檔案/新增移除嵌入式管理單元」。
+3.在「可用嵌入式管理單元」選擇「憑證」後，按「新增」。
+4.在選擇管理帳號選項裡選擇「我的使用者帳戶」。之後按「完成」。
+5.之後按「確定」離開。
+6.在左側「主控台根目錄」打開「受信任的根憑證授權單位」並選擇「憑證」。
+7.執行主選單「動作/所有工作/匯入」。
+8.直接按「下一步」
+9.選擇上述minica產生的根憑證 minica.pem 後按下一步。如果看不到檔案，請修改檔案管理視窗的副檔名條件。
+10.在「憑證存放區」頁面採預設值即可，按「下一步」。
+11.按「完成」離開即完成安裝根憑證。
+12.瀏覽器瀏覽https://localhost
+
+
+使用mkert產生憑證
+
+https://github.com/FiloSottile/mkcert
+
+下載windows版本程式
+https://github.com/FiloSottile/mkcert/releases                   
